@@ -1,0 +1,726 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
+        "version": "1.0.0",
+        "title": "Assembly Payments Adaptor API",
+        "x-logo": {
+            "url": "https://raw.githubusercontent.com/RaymondK-AP/API/master/logo.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "Assembly Payments"
+        },
+        "contact": {
+            "email": "spice.adaptor@assemblypayments.com"
+        },
+        "license": {
+            "name": "Assembly's License",
+            "url": "XXXXXXXXXXX"
+        }
+    },
+    "host": "localhost",
+    "basePath": "/v1",
+    "tags": [
+        {
+            "name": "",
+            "description": "",
+            "externalDocs": {
+                "description": "SPICE Documentation",
+                "url": "https://developer.assemblypayments.com/spice"
+            }
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/purchase": {
+            "post": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Purchase transaction",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "To make a purchase transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Purchase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Purchase transaction completed",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SpiPurchaseResponse"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }
+        },
+        "/refunds": {
+            "post": {
+                "tags": [
+                    "Refunds"
+                ],
+                "summary": "Refund transaction",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "To make a refund transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Refund"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Refund transaction completed",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SpiRefundResponse"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }            
+        },
+        "/settlement_enquiry": {
+            "post": {
+                "tags": [
+                    "Settlement Enquiry"
+                ],
+                "summary": "Initiate a Settlement Enquiry",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Initiate a Settlement Enquiry",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SettlementEnquiry"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Settlement Enquiry completed",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SpiSettlementEnquiryResponse"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }                      
+        }
+    },
+    "definitions": {
+        "Purchase": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "purchaseAmount"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "example": "purchaseTrans1"
+                },
+                "purchaseAmount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Total amount of the transaction that was performed to the bank in cents",
+                    "example": 10000
+                },
+                "tipAmount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Tip component of a transaction in cents",
+                    "example": 200
+                },
+                "cashoutAmount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Amount to cashout in cents",
+                    "example": 0
+                }
+            }
+        },
+        "Refund": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "refundAmount"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "example": "refundtrans1"
+                },
+                "refundAmount": {
+                    "type": "integer",
+                    "description": "Total amount of the transaction that was performed to the bank in cents",
+                    "example": 5000
+                }
+            }
+        },
+        "SettlementEnquiry": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "refundAmount"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "format": "settlementEnq1"
+                }
+            }
+        },        
+        "SpiPurchaseResponse": {
+            "type": "object",
+            "properties": {
+                "account_type": {
+                    "type": "string",
+                    "example": "CREDIT"
+                },
+                "auth_code": {
+                    "type": "string",
+                    "example": "915304"
+                },
+                "bank_date": {
+                    "type": "string",
+                    "example": "26032019"
+                },
+                "bank_noncash_amount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Total amount of the transaction that was performed to the bank in cents",
+                    "example": 2000
+                },
+                "bank_settlement_date": {
+                    "type": "string",
+                    "example": "26032019"
+                },
+                "bank_time": {
+                    "type": "string",
+                    "example": "135548"
+                },
+                "card_entry": {
+                    "type": "string",
+                    "example": "EMV_CTLS"
+                },
+                "currency": {
+                    "type": "string",
+                    "example": "AUD"
+                },
+                "customer_receipt": {
+                    "type": "string",
+                    "description": "Receipt returned to the customer",
+                    "example": "EFTPOS FROM WESTPAC\r\nAP TEST MID VX690\r\nBUSNESS BANKING\r\nSYDNEY 2000\r\nAustralia\r\n\r\nTIME 26MAR19   13:55\r\nMID         25758970\r\nTSP     100381000315\r\nRRN     190326000302\r\nMasterCard      \r\nMastercard(C)     CR\r\nCARD............4791\r\nAID   A0000000041010\r\nTVR       0000008000\r\nAUTH          915304\r\n\r\nPURCHASE    AUD20.00\r\n\r\n   (000) APPROVED\r\n\r\n  *CUSTOMER COPY*\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                },
+                "customer_receipt_printed": {
+                    "type": "string",
+                    "description": "If a customer receipt has been printed",
+                    "example": false
+                },
+                "emv_actioncode": {
+                    "type": "string",
+                    "example": "ARP"
+                },
+                "emv_actioncode_values": {
+                    "type": "string",
+                    "example": "DFA41EF8C327C8440012"
+                },
+                "emv_pix": {
+                    "type": "string",
+                    "example": "1010"
+                },
+                "emv_rid": {
+                    "type": "string",
+                    "example": "A000000004"
+                },
+                "emv_tsi": {
+                    "type": "string",
+                    "example": "E800"
+                },
+                "emv_tvr": {
+                    "type": "string",
+                    "example": "0000008000"
+                },
+                "expiry_date": {
+                    "type": "string",
+                    "example": "0221"
+                },
+                "host_response_code": {
+                    "type": "string",
+                    "description": "Response code returned by the host",
+                    "example": "000"
+                },
+                "host_response_text": {
+                    "type": "string",
+                    "description": "Response text returned by the host",
+                    "example": "APPROVED"
+                },
+                "informative_text": {
+                    "type": "string",
+                    "example": ""
+                },
+                "masked_pan": {
+                    "type": "string",
+                    "example": "............4791"
+                },
+                "merchant_acquirer": {
+                    "type": "string",
+                    "example": "EFTPOS FROM WESTPAC"
+                },
+                "merchant_addr": {
+                    "type": "string",
+                    "example": "BUSNESS BANKING"
+                },
+                "merchant_city": {
+                    "type": "string",
+                    "example": "SYDNEY"
+                },
+                "merchant_country": {
+                    "type": "string",
+                    "example": "Australia"
+                },
+                "merchant_id": {
+                    "type": "string",
+                    "example": "25758970"
+                },
+                "merchant_name": {
+                    "type": "string",
+                    "example": "AP TEST MID VX690"
+                },
+                "merchant_postcode": {
+                    "type": "string",
+                    "example": "2000"
+                },
+                "merchant_receipt": {
+                    "type": "string",
+                    "description": "Merchant receipt",
+                    "example": "EFTPOS FROM WESTPAC\r\nAP TEST MID VX690\r\nBUSNESS BANKING\r\nSYDNEY 2000\r\nAustralia\r\n\r\nTIME 26MAR19   13:55\r\nMID         25758970\r\nTSP     100381000315\r\nRRN     190326000302\r\nMasterCard      \r\nMastercard(C)     CR\r\nCARD............4791\r\nAID   A0000000041010\r\nTVR       0000008000\r\nAUTH          915304\r\n\r\nPURCHASE    AUD20.00\r\n\r\n   (000) APPROVED\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                },
+                "merchant_receipt_printed": {
+                    "type": "boolean",
+                    "description": "If a merchant receipt has been printed",
+                    "example": false
+                },
+                "online_indicator": {
+                    "type": "string",
+                    "example": "Y"
+                },
+                "pos_ref_id": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier corresponding to the request",
+                    "example": "purchaseTrans1"
+                },
+                "purchase_amount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Purchase amount corresponding to the request",
+                    "example": 2000
+                },
+                "rrn": {
+                    "type": "string",
+                    "example": "190326000302"
+                },
+                "scheme_app_name": {
+                    "type": "string",
+                    "example": "MasterCard"
+                },
+                "scheme_name": {
+                    "type": "string",
+                    "description": "Scheme of the card",
+                    "example": "MasterCard"
+                },
+                "stan": {
+                    "type": "string",
+                    "example": "000302"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "If the transaction was successful",
+                    "example": true
+                },
+                "surcharge_amount": {
+                    "type": "integer",
+                    "format": "int32",                    
+                    "example": 0
+                },
+                "terminal_id": {
+                    "type": "string",
+                    "example": "100381000315"
+                },
+                "terminal_ref_id": {
+                    "type": "string",
+                    "example": "81000315_26032019135555"
+                },
+                "tip_amount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Tip amount corresponding to the request",
+                    "example": 0
+                },
+                "transaction_type": {
+                    "type": "string",
+                    "description": "The requested transaction type",
+                    "example": "PURCHASE"
+                }
+            }
+        },
+        "SpiRefundResponse": {
+            "type": "object",
+            "properties": {
+                "account_type": {
+                    "type": "string",
+                    "example": "CREDIT"
+                },
+                "amount_purchase": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Purchase amount to be refunded in cents",
+                    "example": 1000
+                },
+                "amount_transaction_type": {
+                    "type": "string",
+                    "example": "1000"
+                },
+                "auth_code": {
+                    "type": "string",
+                    "example": "201633"
+                },
+                "bank_date": {
+                    "type": "string",
+                    "example": "08092017"
+                },
+                "bank_time": {
+                    "type": "string",
+                    "example": "122314"
+                },
+                "card_entry": {
+                    "type": "string",
+                    "example": "EMV_INSERT"
+                },
+                "currency": {
+                    "type": "string",
+                    "example": "AUD"
+                },
+                "bank_settlement_date": {
+                    "type": "string",
+                    "example": "21102017"
+                },
+                "customer_receipt": {
+                    "type": "string",
+                    "example": "EFTPOS FROM BANK SA\r\nTEST Term M2\r\n275 Kent St\r\nSydney 2000\r\nAustralia\r\n\r\n\r\nMID         20150726\r\nTSP     100612345884\r\nTIME 08SEP17   12:23\r\nRRN     1517890857\r\nTRAN 000005   CREDIT\r\nMastercard         I\r\nCARD............5182\r\nAUTH          201633\r\n\r\nREFUND      AUD1000\r\n\r\nTOTAL       AUD1000\r\n\r\n\r\n   (000) APPROVED\r\n\r\n\r\n  \\*CUSTOMER COPY\\*\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                },
+                "expiry_date": {
+                    "type": "string",
+                    "example": "1018"
+                },
+                "host_response_code": {
+                    "type": "string",
+                    "description": "Response code returned by the host",
+                    "example": "000"
+                },
+                "host_response_text": {
+                    "type": "string",
+                    "description": "Response text returned by the host",
+                    "example": "APPROVED"
+                },
+                "informative_text": {
+                    "type": "string",
+                    "example": ""
+                },
+                "masked_pan": {
+                    "type": "string",
+                    "example": "............5182"
+                },
+                "merchant_acquirer": {
+                    "type": "string",
+                    "example": "EFTPOS FROM BANK SA"
+                },
+                "merchant_addr": {
+                    "type": "string",
+                    "example": "275 Kent St"
+                },
+                "merchant_city": {
+                    "type": "string",
+                    "example": "Sydney"
+                },
+                "merchant_country": {
+                    "type": "string",
+                    "example": "Australia"
+                },
+                "merchant_id": {
+                    "type": "string",
+                    "example": "20150726"
+                },
+                "merchant_name": {
+                    "type": "string",
+                    "example": "TEST Term M2"
+                },
+                "merchant_postcode": {
+                    "type": "string",
+                    "example": "2000"
+                },
+                "merchant_receipt": {
+                    "type": "string",
+                    "description": "Merchant receipt",
+                    "example": "EFTPOS FROM BANK SA\r\nTEST Term M2\r\n275 Kent St\r\nSydney 2000\r\nAustralia\r\n\r\n\r\nMID         20150726\r\nTSP     100612345884\r\nTIME 08SEP17   12:23\r\nRRN     1517890857\r\nTRAN 000005   CREDIT\r\nMastercard         I\r\nCARD............5182\r\nAUTH          201633\r\n\r\nREFUND      AUD1000\r\n\r\nTOTAL       AUD1000\r\n\r\n\r\n   (000) APPROVED\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                },
+                "online_indicator": {
+                    "type": "string",
+                    "example": "Y"
+                },
+                "scheme_name": {
+                    "type": "string",
+                    "description": "Scheme of the card",
+                    "example": "MasterCard"
+                },
+                "stan": {
+                    "type": "string",
+                    "example": "000005"
+                },
+                "rrn": {
+                    "type": "string",
+                    "example": "1517890857"
+                },
+                "success": {
+                    "type": "string",
+                    "description": "Outcome of the transaction",
+                    "example": true
+                },
+                "terminal_id": {
+                    "type": "string",
+                    "example": "123456789884"
+                },
+                "transaction_type": {
+                    "type": "string",
+                    "description": "The requested transaction type",
+                    "example": "REFUND"
+                }
+            }
+        },
+        "SpiSettlementEnquiryResponse": {
+            "type": "object",
+            "properties": {
+                "accumulated_settle_by_acquirer_count": {
+                    "type": "string",
+                    "description": "",
+                    "example": "0"
+                },
+                "accumulated_settle_by_acquirer_value": {
+                    "type": "string",
+                    "description": "",
+                    "example": "0"
+                },
+                "accumulated_total_count": {
+                    "type": "string",
+                    "description": "",
+                    "example":"0" 
+                },
+                "accumulated_total_value": {
+                    "type": "string",
+                    "description": "",
+                    "example": "0"
+                },
+                "bank_date": {
+                    "type": "string",
+                    "description": "",
+                    "example": "05102017"
+                },
+                "bank_time": {
+                    "type": "string",
+                    "description": "",
+                    "example": "160326"
+                },
+                "host_response_code": {
+                    "type": "string",
+                    "description": "",
+                    "example": "000"
+                },
+                "host_response_text": {
+                    "type": "string",
+                    "description": "",
+                    "example": "APPROVED"
+                },
+                "merchant_acquirer": {
+                    "type": "string",
+                    "description": "",
+                    "example": "EFTPOS FROM WESTPAC"
+                },
+                "merchant_address": {
+                    "type": "string",
+                    "description": "",
+                    "example": "275 Kent St"
+                },
+                "merchant_city": {
+                    "type": "string",
+                    "description": "",
+                    "example": "Sydney"
+                },
+                "merchant_country": {
+                    "type": "string",
+                    "description": "",
+                    "example": "Australia"
+                },
+                "merchant_name": {
+                    "type": "string",
+                    "description": "",
+                    "example": "VAAS Product 3"
+                },
+                "merchant_postcode": {
+                    "type": "string",
+                    "description": "",
+                    "example": "2000"
+                },
+                "merchant_receipt": {
+                    "type": "string",
+                    "description": "Merchant Receipt",
+                    "example": "EFTPOS FROM WESTPAC\\r\\nVAAS Product 3\\r\\n275 Kent St\\r\\nSydney 2000\\r\\n\\r\\nAustralia\\r\\n\\r\\n\\r\\n  PREVIOUS TOTALS\\r\\nTSP     100381990117\\r\\nTIME 05OCT17  16:03\\r\\nTRAN 000000-000000\\r\\nFROM 04OCT17 05:00\\r\\nTO   05OCT17 05:00\\r\\n\\r\\nDebit\\r\\nTOT     0      $0.00\\r\\n\\r\\nMasterCard\\r\\nTOT     0      $0.00\\r\\n\\r\\nVisa\\r\\nTOT     0      $0.00\\r\\n\\r\\nBANKED  0      $0.00\\r\\n\\r\\nAmex\\r\\nTOT     0      $0.00\\r\\n\\r\\nDiners\\r\\nTOT     0      $0.00\\r\\n\\r\\nJCB\\r\\nTOT     0      $0.00\\r\\n\\r\\nUnionPay\\r\\nTOT     0      $0.00\\r\\n\\r\\nTOTAL\\r\\nTOT     0      $0.00\\r\\n\\r\\n   (000) APPROVED\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n"
+                },
+                "schemes": {
+                    "type": "string",
+                    "description": "Settlement relating to each scheme",
+                    "example": [
+                        {
+                            "scheme_name": "Debit",
+                            "settle_by_acquirer": "Yes",
+                            "total_count": "0",
+                            "total_value": "0"
+                        },
+                        {
+                            "scheme_name": "MasterCard",
+                            "settle_by_acquirer": "Yes",
+                            "total_count": "0",
+                            "total_value": "0"
+                        },
+                        {
+                            "scheme_name": "Visa",
+                            "settle_by_acquirer": "Yes",
+                            "total_count": "0",
+                            "total_value": "0"
+                        },
+                        {
+                            "scheme_name": "Amex",
+                            "settle_by_acquirer": "No",
+                            "total_count": "0",
+                            "total_value": "0"
+                        },
+                        {
+                            "scheme_name": "Diners",
+                            "settle_by_acquirer": "No",
+                            "total_count": "0",
+                            "total_value": "0"
+                        },
+                        {
+                            "scheme_name": "JCB",
+                            "settle_by_acquirer": "No",
+                            "total_count": "0",
+                            "total_value": "0"
+                        },
+                        {
+                            "scheme_name": "UnionPay",
+                            "settle_by_acquirer": "No",
+                            "total_count": "0",
+                            "total_value": "0"
+                        }
+                    ]},
+                "settlement_period_end_date": {
+                    "type": "string",
+                    "description": "Settlment end date",
+                    "example": "05Oct17"
+                },
+                "settlement_period_end_time": {
+                    "type": "string",
+                    "description": "Settlment end time",
+                    "example": "05:00"
+                },
+                "settlement_period_start_date": {
+                    "type": "string",
+                    "description": "Settlment start date",
+                    "example": "04Oct17"
+                },
+                "settlement_period_start_time": {
+                    "type": "string",
+                    "description": "Settlment start time",
+                    "example": "05:00"
+                },
+                "settlement_triggered_date": {
+                    "type": "string",
+                    "description": "",
+                    "example": "05Oct17"
+                },
+                "settlement_triggered_time": {
+                    "type": "string",
+                    "description": "",
+                    "example": "16:03:26"
+                },
+                "stan": {
+                    "type": "string",
+                    "description": "",
+                    "example": "000000"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "Whether or not the settlement enquiry was successful",
+                    "example": true
+                },
+                "terminal_id": {
+                    "type": "string",
+                    "description": "",
+                    "example": "100381990117"
+                },
+                "transaction_range": {
+                    "type": "string",
+                    "description": "",
+                    "example": "000000-000000"
+                }
+            }
+        },
+        "externalDocs": {
+            "description": "Find out more at our Developer Portal",
+            "url": "https://developer.assemblypayments.com/docs"
+        }
+    }
+}
