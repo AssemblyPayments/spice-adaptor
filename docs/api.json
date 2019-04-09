@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
+        "description": "aaaAPI specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
         "version": "1.0.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
@@ -240,8 +240,30 @@
         },
         "SettlementEnquiry": {
             "type": "object",
-            "required": [],
-            "properties": {}
+            "required": [
+                "posRefId"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "format": "settlementEnq1"
+                }
+            }
+        },        
+        "Settlement": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "refundAmount"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "format": "settlement"
+                }
+            }
         },        
         "SpiPurchaseResponse": {
             "type": "object",
