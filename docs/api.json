@@ -932,6 +932,7 @@
                         "example": "000000-000000"
                     }
                 }            
+            }
         },
         "externalDocs": {
             "description": "Find out more at our Developer Portal",
