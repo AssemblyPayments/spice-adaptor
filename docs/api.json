@@ -5,7 +5,7 @@
         "version": "1.0.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
-            "url": "https://raw.githubusercontent.com/RaymondK-AP/API/master/logo.png",
+            "url": "https://raw.githubusercontent.com/AssemblyPayments/spice-adaptor/master/logo.png",
             "backgroundColor": "#FFFFFF",
             "altText": "Assembly Payments"
         },
@@ -109,6 +109,44 @@
                 ]
             }            
         },
+        "/settlement": {
+            "post": {
+                "tags": [
+                    "Settlement"
+                ],
+                "summary": "Initiate a Settlement",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Initiate a Settlement",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Settlement"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Settlement completed",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SpiSettlementResponse"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }                      
+        },
         "/settlement_enquiry": {
             "post": {
                 "tags": [
@@ -202,17 +240,8 @@
         },
         "SettlementEnquiry": {
             "type": "object",
-            "required": [
-                "posRefId",
-                "refundAmount"
-            ],
-            "properties": {
-                "posRefId": {
-                    "type": "string",
-                    "description": "Unique alphanumeric identifier",
-                    "format": "settlementEnq1"
-                }
-            }
+            "required": [],
+            "properties": {}
         },        
         "SpiPurchaseResponse": {
             "type": "object",
@@ -716,7 +745,193 @@
                     "description": "",
                     "example": "000000-000000"
                 }
-            }
+            },
+            "SpiSettlementResponse": {
+                "type": "object",
+                "properties": {
+                    "accumulated_purchase_count": {
+                        "type": "string",
+                        "description": "",
+                        "example": "1"
+                    },
+                    "accumulated_purchase_value": {
+                        "type": "string",
+                        "description": "",
+                        "example": "1"
+                    },
+                    "accumulated_settle_by_acquirer_count": {
+                        "type": "string",
+                        "description": "",
+                        "example": "0"
+                    },
+                    "accumulated_settle_by_acquirer_value": {
+                        "type": "string",
+                        "description": "",
+                        "example": "0"
+                    },
+                    "accumulated_total_count": {
+                        "type": "string",
+                        "description": "",
+                        "example":"0" 
+                    },
+                    "accumulated_total_value": {
+                        "type": "string",
+                        "description": "",
+                        "example": "0"
+                    },
+                    "bank_date": {
+                        "type": "string",
+                        "description": "",
+                        "example": "05102017"
+                    },
+                    "bank_time": {
+                        "type": "string",
+                        "description": "",
+                        "example": "160326"
+                    },
+                    "host_response_code": {
+                        "type": "string",
+                        "description": "",
+                        "example": "000"
+                    },
+                    "host_response_text": {
+                        "type": "string",
+                        "description": "",
+                        "example": "APPROVED"
+                    },
+                    "merchant_acquirer": {
+                        "type": "string",
+                        "description": "",
+                        "example": "EFTPOS FROM WESTPAC"
+                    },
+                    "merchant_address": {
+                        "type": "string",
+                        "description": "",
+                        "example": "275 Kent St"
+                    },
+                    "merchant_city": {
+                        "type": "string",
+                        "description": "",
+                        "example": "Sydney"
+                    },
+                    "merchant_country": {
+                        "type": "string",
+                        "description": "",
+                        "example": "Australia"
+                    },
+                    "merchant_name": {
+                        "type": "string",
+                        "description": "",
+                        "example": "VAAS Product 3"
+                    },
+                    "merchant_postcode": {
+                        "type": "string",
+                        "description": "",
+                        "example": "2000"
+                    },
+                    "merchant_receipt": {
+                        "type": "string",
+                        "description": "Merchant Receipt",
+                        "example": "EFTPOS FROM WESTPAC\\r\\nVAAS Product 3\\r\\n275 Kent St\\r\\nSydney 2000\\r\\n\\r\\nAustralia\\r\\n\\r\\n\\r\\n  PREVIOUS TOTALS\\r\\nTSP     100381990117\\r\\nTIME 05OCT17  16:03\\r\\nTRAN 000000-000000\\r\\nFROM 04OCT17 05:00\\r\\nTO   05OCT17 05:00\\r\\n\\r\\nDebit\\r\\nTOT     0      $0.00\\r\\n\\r\\nMasterCard\\r\\nTOT     0      $0.00\\r\\n\\r\\nVisa\\r\\nTOT     0      $0.00\\r\\n\\r\\nBANKED  0      $0.00\\r\\n\\r\\nAmex\\r\\nTOT     0      $0.00\\r\\n\\r\\nDiners\\r\\nTOT     0      $0.00\\r\\n\\r\\nJCB\\r\\nTOT     0      $0.00\\r\\n\\r\\nUnionPay\\r\\nTOT     0      $0.00\\r\\n\\r\\nTOTAL\\r\\nTOT     0      $0.00\\r\\n\\r\\n   (000) APPROVED\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n"
+                    },
+                    "schemes": {
+                        "type": "string",
+                        "description": "Settlement relating to each scheme",
+                        "example": [
+                            {
+                                "scheme_name": "Debit",
+                                "settle_by_acquirer": "Yes",
+                                "total_count": "0",
+                                "total_value": "0"
+                            },
+                            {
+                                "scheme_name": "MasterCard",
+                                "settle_by_acquirer": "Yes",
+                                "total_count": "0",
+                                "total_value": "0"
+                            },
+                            {
+                                "scheme_name": "Visa",
+                                "settle_by_acquirer": "Yes",
+                                "total_count": "0",
+                                "total_value": "0"
+                            },
+                            {
+                                "scheme_name": "Amex",
+                                "settle_by_acquirer": "No",
+                                "total_count": "0",
+                                "total_value": "0"
+                            },
+                            {
+                                "scheme_name": "Diners",
+                                "settle_by_acquirer": "No",
+                                "total_count": "0",
+                                "total_value": "0"
+                            },
+                            {
+                                "scheme_name": "JCB",
+                                "settle_by_acquirer": "No",
+                                "total_count": "0",
+                                "total_value": "0"
+                            },
+                            {
+                                "scheme_name": "UnionPay",
+                                "settle_by_acquirer": "No",
+                                "total_count": "0",
+                                "total_value": "0"
+                            }
+                        ]},
+                    "settlement_period_end_date": {
+                        "type": "string",
+                        "description": "Settlment end date",
+                        "example": "05Oct17"
+                    },
+                    "settlement_period_end_time": {
+                        "type": "string",
+                        "description": "Settlment end time",
+                        "example": "05:00"
+                    },
+                    "settlement_period_start_date": {
+                        "type": "string",
+                        "description": "Settlment start date",
+                        "example": "04Oct17"
+                    },
+                    "settlement_period_start_time": {
+                        "type": "string",
+                        "description": "Settlment start time",
+                        "example": "05:00"
+                    },
+                    "settlement_triggered_date": {
+                        "type": "string",
+                        "description": "",
+                        "example": "05Oct17"
+                    },
+                    "settlement_triggered_time": {
+                        "type": "string",
+                        "description": "",
+                        "example": "16:03:26"
+                    },
+                    "stan": {
+                        "type": "string",
+                        "description": "",
+                        "example": "000000"
+                    },
+                    "success": {
+                        "type": "boolean",
+                        "description": "Whether or not the settlement enquiry was successful",
+                        "example": true
+                    },
+                    "terminal_id": {
+                        "type": "string",
+                        "description": "",
+                        "example": "100381990117"
+                    },
+                    "transaction_range": {
+                        "type": "string",
+                        "description": "",
+                        "example": "000000-000000"
+                    }
+                }            
         },
         "externalDocs": {
             "description": "Find out more at our Developer Portal",
