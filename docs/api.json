@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "aaaAPI specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
+        "description": "API specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
         "version": "1.0.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
