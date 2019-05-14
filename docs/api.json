@@ -48,6 +48,13 @@
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
                         "in": "body",
                         "name": "body",
                         "description": "To make a purchase transaction",
@@ -131,6 +138,13 @@
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
                         "in": "body",
                         "name": "body",
                         "description": "Initiate a Settlement",
@@ -168,6 +182,13 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
                     {
                         "in": "body",
                         "name": "body",
