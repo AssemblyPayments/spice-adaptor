@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "API specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/AssemblyPayments/spice-adaptor/master/logo.png",
@@ -85,6 +85,13 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -187,6 +194,25 @@
         }
     },
     "definitions": {
+        "Headers": {
+            "type": "object",
+            "required": [
+                "POS-NAME",
+                "POS-VERSION"
+            ],
+            "properties": {
+                "POS-NAME": {
+                    "type": "string",
+                    "description": "Name of your Point of Sales",
+                    "example": "Assembly POS"
+                },                                        
+                "POS-VERSION": {
+                    "type": "string",
+                    "description": "Version of your Point of Sales",
+                    "example": "10.2.99"
+                }
+            }                           
+        },
         "Purchase": {
             "type": "object",
             "required": [
