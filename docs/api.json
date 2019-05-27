@@ -69,6 +69,7 @@
                         "description": "Purchase transaction completed",
                         "schema": {
                             "items": {
+                                "type": "object",
                                 "$ref": "#/definitions/SpiPurchaseResponse"
                             }
                         }
@@ -105,20 +106,11 @@
                         "schema": {
                             "$ref": "#/definitions/PurchaseQueryParam"
                         }
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "To make a purchase transaction",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Purchase"
-                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Purchase transaction completed",
+                        "description": "The last transaction",
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/SpiPurchaseResponse"
