@@ -68,7 +68,6 @@
                     "200": {
                         "description": "Purchase transaction completed",
                         "schema": {
-                            "type": "object",                            
                             "items": {
                                 "$ref": "#/definitions/SpiPurchaseResponse"
                             }
