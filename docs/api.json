@@ -78,6 +78,60 @@
                 ]
             }
         },
+        "/purchase": {
+            "get": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Get Last Purchase transaction",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "The posRefId of the last transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PurchaseQueryParam"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "To make a purchase transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Purchase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Purchase transaction completed",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/SpiPurchaseResponse"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }
+        },        
         "/refunds": {
             "post": {
                 "tags": [
@@ -263,6 +317,20 @@
                     "format": "int32",
                     "description": "Amount to cashout in cents",
                     "example": 0
+                }
+            }
+        },
+        "PurchaseQueryParam": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "purchaseAmount"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "posRefId of your last purchase transaction",
+                    "example": "purchaseTrans1"
                 }
             }
         },
