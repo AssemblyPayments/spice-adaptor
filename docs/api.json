@@ -76,9 +76,7 @@
                 },
                 "security": [
                 ]
-            }
-        },
-        "/purchase": {
+            },
             "get": {
                 "tags": [
                     "Purchase"
