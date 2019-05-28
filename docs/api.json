@@ -130,7 +130,7 @@
                 "tags": [
                     "Refund"
                 ],
-                "summary": "Retrieve refund",
+                "summary": "Retrieve refund transaction",
                 "description": "Retrieve a refund transaction from the last 10 processed transactions",
                 "consumes": [
                     "application/json"
@@ -205,9 +205,7 @@
                     "200": {
                         "description": "Refund transaction completed",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/RefundResponse"
-                            }
+                            "$ref": "#/definitions/RefundResponse"
                         }
                     }
                 },
@@ -250,9 +248,7 @@
                     "200": {
                         "description": "Settlement completed",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SettlementResponse"
-                            }
+                            "$ref": "#/definitions/SettlementResponse"
                         }
                     }
                 },
@@ -295,9 +291,7 @@
                     "200": {
                         "description": "Settlement Enquiry completed",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SettlementEnquiryResponse"
-                            }
+                            "$ref": "#/definitions/SettlementEnquiryResponse"
                         }
                     }
                 },
