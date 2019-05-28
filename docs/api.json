@@ -34,49 +34,6 @@
     ],
     "paths": {
         "/purchase": {
-            "post": {
-                "tags": [
-                    "Purchase"
-                ],
-                "summary": "Purchase transaction",
-                "description": "",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "header",
-                        "name": "header",
-                        "schema": {
-                            "$ref": "#/definitions/Headers"
-                        }
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "To make a purchase transaction",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Purchase"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Purchase transaction completed",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SpiPurchaseResponse"
-                            }
-                        }
-                    }
-                },
-                "security": [
-                ]
-            },
             "get": {
                 "tags": [
                     "Purchase"
@@ -110,6 +67,51 @@
                 "responses": {
                     "200": {
                         "description": "The last transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/SpiPurchaseResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            },            
+            "post": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Purchase transaction",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "To make a purchase transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Purchase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Purchase transaction completed",
                         "schema": {
                             "items": {
                                 "$ref": "#/definitions/SpiPurchaseResponse"
