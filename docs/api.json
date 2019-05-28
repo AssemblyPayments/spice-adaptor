@@ -38,7 +38,7 @@
                 "tags": [
                     "Purchase"
                 ],
-                "summary": "Get Last Purchase transaction",
+                "summary": "Retrieve a purchase transaction from the last 10 processed transactions",
                 "description": "",
                 "consumes": [
                     "application/json"
@@ -57,7 +57,7 @@
                     {
                         "in": "query",
                         "name": "query",
-                        "description": "The posRefId of the last transaction",
+                        "description": "The posRefId of the transaction",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/PurchaseQueryParam"
@@ -70,7 +70,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/definitions/SpiPurchaseResponse"
+                                    "$ref": "#/definitions/PurchaseResponse"
                                 }
                             }
                         }
@@ -111,10 +111,12 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Purchase transaction completed",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SpiPurchaseResponse"
+                        "description": "The last transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PurchaseResponse"
+                                }
                             }
                         }
                     }
@@ -123,10 +125,55 @@
                 ]
             }
         },        
-        "/refunds": {
+        "/refund": {
+            "get": {
+                "tags": [
+                    "Refund"
+                ],
+                "summary": "Retrieve a refund transaction from the last 10 processed transactions",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "The posRefId of the transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PurchaseQueryParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The last transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/RefundResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            },                        
             "post": {
                 "tags": [
-                    "Refunds"
+                    "Refund"
                 ],
                 "summary": "Refund transaction",
                 "description": "",
@@ -159,7 +206,7 @@
                         "description": "Refund transaction completed",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/SpiRefundResponse"
+                                "$ref": "#/definitions/RefundResponse"
                             }
                         }
                     }
@@ -204,7 +251,7 @@
                         "description": "Settlement completed",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/SpiSettlementResponse"
+                                "$ref": "#/definitions/SettlementResponse"
                             }
                         }
                     }
@@ -249,7 +296,7 @@
                         "description": "Settlement Enquiry completed",
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/SpiSettlementEnquiryResponse"
+                                "$ref": "#/definitions/SettlementEnquiryResponse"
                             }
                         }
                     }
@@ -371,7 +418,7 @@
                 }
             }
         },        
-        "SpiPurchaseResponse": {
+        "PurchaseResponse": {
             "type": "object",
             "properties": {
                 "account_type": {
@@ -565,7 +612,7 @@
                 }
             }
         },
-        "SpiRefundResponse": {
+        "RefundResponse": {
             "type": "object",
             "properties": {
                 "account_type": {
@@ -698,7 +745,7 @@
                 }
             }
         },
-        "SpiSettlementEnquiryResponse": {
+        "SettlementEnquiryResponse": {
             "type": "object",
             "properties": {
                 "accumulated_settle_by_acquirer_count": {
@@ -875,7 +922,7 @@
                 }
             }
         },
-        "SpiSettlementResponse": {
+        "SettlementResponse": {
             "type": "object",
             "properties": {
                 "accumulated_purchase_count": {
