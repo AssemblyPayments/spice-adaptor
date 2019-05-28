@@ -25,7 +25,7 @@
             "description": "",
             "externalDocs": {
                 "description": "SPICE Documentation",
-                "url": "https://developer.assemblypayments.com/spice"
+                "url": "https://developer.assemblypayments.com/docs/getting-started"
             }
         }
     ],
@@ -38,8 +38,8 @@
                 "tags": [
                     "Purchase"
                 ],
-                "summary": "Retrieve a purchase transaction from the last 10 processed transactions",
-                "description": "",
+                "summary": "Retrieve purchase transaction",
+                "description": "Retrieve a purchase transaction from the last 10 processed transactions",
                 "consumes": [
                     "application/json"
                 ],
@@ -84,7 +84,7 @@
                     "Purchase"
                 ],
                 "summary": "Purchase transaction",
-                "description": "",
+                "description": "Making a purchase transaction",
                 "consumes": [
                     "application/json"
                 ],
@@ -102,7 +102,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "To make a purchase transaction",
+                        "description": "Making a purchase transaction",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Purchase"
@@ -130,8 +130,8 @@
                 "tags": [
                     "Refund"
                 ],
-                "summary": "Retrieve a refund transaction from the last 10 processed transactions",
-                "description": "",
+                "summary": "Retrieve refund",
+                "description": "Retrieve a refund transaction from the last 10 processed transactions",
                 "consumes": [
                     "application/json"
                 ],
@@ -176,7 +176,7 @@
                     "Refund"
                 ],
                 "summary": "Refund transaction",
-                "description": "",
+                "description": "Making a refund transaction",
                 "consumes": [
                     "application/json"
                 ],
@@ -194,7 +194,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "To make a refund transaction",
+                        "description": "Making a refund transaction",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Refund"
@@ -221,7 +221,7 @@
                     "Settlement"
                 ],
                 "summary": "Initiate a Settlement",
-                "description": "",
+                "description": "Initiating a settlement",
                 "consumes": [
                     "application/json"
                 ],
@@ -266,7 +266,7 @@
                     "Settlement Enquiry"
                 ],
                 "summary": "Initiate a Settlement Enquiry",
-                "description": "",
+                "description": "Initiating a settlement enquiry",
                 "consumes": [
                     "application/json"
                 ],
