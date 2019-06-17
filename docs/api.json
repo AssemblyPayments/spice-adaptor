@@ -173,10 +173,10 @@
             },            
             "post": {
                 "tags": [
-                    "Purchase"
+                    "MOTO"
                 ],
                 "summary": "Purchase transaction",
-                "description": "Making a purchase transaction",
+                "description": "Making a MOTO transaction",
                 "consumes": [
                     "application/json"
                 ],
