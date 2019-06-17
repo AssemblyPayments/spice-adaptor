@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "API specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/AssemblyPayments/spice-adaptor/master/logo.png",
@@ -25,7 +25,7 @@
             "description": "",
             "externalDocs": {
                 "description": "SPICE Documentation",
-                "url": "https://developer.assemblypayments.com/spice"
+                "url": "https://developer.assemblypayments.com/docs/getting-started"
             }
         }
     ],
@@ -34,12 +34,12 @@
     ],
     "paths": {
         "/purchase": {
-            "post": {
+            "get": {
                 "tags": [
                     "Purchase"
                 ],
-                "summary": "Purchase transaction",
-                "description": "",
+                "summary": "Retrieve purchase transaction",
+                "description": "Retrieve a purchase transaction from the last 10 processed transactions",
                 "consumes": [
                     "application/json"
                 ],
@@ -48,9 +48,61 @@
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "The posRefId of the transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PurchaseQueryParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The last transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PurchaseResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            },            
+            "post": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Purchase transaction",
+                "description": "Making a purchase transaction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
                         "in": "body",
                         "name": "body",
-                        "description": "To make a purchase transaction",
+                        "description": "Making a purchase transaction",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Purchase"
@@ -59,10 +111,12 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Purchase transaction completed",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SpiPurchaseResponse"
+                        "description": "The last transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PurchaseResponse"
+                                }
                             }
                         }
                     }
@@ -70,14 +124,14 @@
                 "security": [
                 ]
             }
-        },
-        "/refunds": {
-            "post": {
+        },        
+        "/refund": {
+            "get": {
                 "tags": [
-                    "Refunds"
+                    "Refund"
                 ],
-                "summary": "Refund transaction",
-                "description": "",
+                "summary": "Retrieve refund transaction",
+                "description": "Retrieve a refund transaction from the last 10 processed transactions",
                 "consumes": [
                     "application/json"
                 ],
@@ -86,9 +140,61 @@
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "The posRefId of the transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PurchaseQueryParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The last transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/RefundResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            },                        
+            "post": {
+                "tags": [
+                    "Refund"
+                ],
+                "summary": "Refund transaction",
+                "description": "Making a refund transaction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
                         "in": "body",
                         "name": "body",
-                        "description": "Making a purchase transaction. ",
+                        "description": "Making a refund transaction",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Refund"
@@ -99,9 +205,7 @@
                     "200": {
                         "description": "Refund transaction completed",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SpiRefundResponse"
-                            }
+                            "$ref": "#/definitions/RefundResponse"
                         }
                     }
                 },
@@ -115,7 +219,7 @@
                     "Settlement"
                 ],
                 "summary": "Initiate a Settlement",
-                "description": "",
+                "description": "Initiating a settlement",
                 "consumes": [
                     "application/json"
                 ],
@@ -123,6 +227,13 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -137,9 +248,7 @@
                     "200": {
                         "description": "Settlement completed",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SpiSettlementResponse"
-                            }
+                            "$ref": "#/definitions/SettlementResponse"
                         }
                     }
                 },
@@ -153,7 +262,7 @@
                     "Settlement Enquiry"
                 ],
                 "summary": "Initiate a Settlement Enquiry",
-                "description": "",
+                "description": "Initiating a settlement enquiry",
                 "consumes": [
                     "application/json"
                 ],
@@ -161,6 +270,13 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -175,9 +291,7 @@
                     "200": {
                         "description": "Settlement Enquiry completed",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/SpiSettlementEnquiryResponse"
-                            }
+                            "$ref": "#/definitions/SettlementEnquiryResponse"
                         }
                     }
                 },
@@ -187,6 +301,25 @@
         }
     },
     "definitions": {
+        "Headers": {
+            "type": "object",
+            "required": [
+                "POS-NAME",
+                "POS-VERSION"
+            ],
+            "properties": {
+                "POS-NAME": {
+                    "type": "string",
+                    "description": "Name of your Point of Sales",
+                    "example": "Assembly POS"
+                },                                        
+                "POS-VERSION": {
+                    "type": "string",
+                    "description": "Version of your Point of Sales",
+                    "example": "10.2.99"
+                }
+            }                           
+        },
         "Purchase": {
             "type": "object",
             "required": [
@@ -208,14 +341,39 @@
                 "tipAmount": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "Tip component of a transaction in cents",
+                    "description": "Tip component of a transaction in cents. Note, Tip amount and cash out amount cannot be used together.",
                     "example": 200
                 },
                 "cashoutAmount": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "Amount to cashout in cents",
-                    "example": 0
+                    "description": "Amount to cashout in cents. Tip amount and cash out amount cannot be used together.",
+                    "example": 100
+                },
+                "surchargeAmount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Surcharge amount in cents to include in the transaction.",
+                    "example": 300                    
+                },
+                "promptForCashout": {
+                    "type": "boolean",
+                    "description": "If set to true, the terminal will prompt for cash out, default is false.",
+                    "example": true                        
+                }
+            }
+        },
+        "PurchaseQueryParam": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "purchaseAmount"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "posRefId of your last purchase transaction",
+                    "example": "purchaseTrans1"
                 }
             }
         },
@@ -270,7 +428,7 @@
                 }
             }
         },        
-        "SpiPurchaseResponse": {
+        "PurchaseResponse": {
             "type": "object",
             "properties": {
                 "account_type": {
@@ -464,7 +622,7 @@
                 }
             }
         },
-        "SpiRefundResponse": {
+        "RefundResponse": {
             "type": "object",
             "properties": {
                 "account_type": {
@@ -597,7 +755,7 @@
                 }
             }
         },
-        "SpiSettlementEnquiryResponse": {
+        "SettlementEnquiryResponse": {
             "type": "object",
             "properties": {
                 "accumulated_settle_by_acquirer_count": {
@@ -774,7 +932,7 @@
                 }
             }
         },
-        "SpiSettlementResponse": {
+        "SettlementResponse": {
             "type": "object",
             "properties": {
                 "accumulated_purchase_count": {
