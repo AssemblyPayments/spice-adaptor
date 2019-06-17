@@ -348,7 +348,18 @@
                     "type": "integer",
                     "format": "int32",
                     "description": "Amount to cashout in cents. Tip amount and cash out amount cannot be used together.",
-                    "example": 0
+                    "example": 100
+                },
+                "surchargeAmount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Surcharge amount in cents to include in the transaction.",
+                    "example": 300                    
+                },
+                "promptForCashout": {
+                    "type": "boolean",
+                    "description": "If set to true, the terminal will prompt for cash out, default is false.",
+                    "example": true                        
                 }
             }
         },
