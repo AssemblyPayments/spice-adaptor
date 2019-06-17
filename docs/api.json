@@ -88,7 +88,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "To make a refund transaction",
+                        "description": "Making a purchase transaction. ",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Refund"
@@ -235,7 +235,12 @@
                     "type": "integer",
                     "description": "Total amount of the transaction that was performed to the bank in cents",
                     "example": 5000
-                }
+                },
+                "suppressMerchantPassword": {
+                    "type": "boolean",
+                    "description": "If true, merchant password will not be prompted during a refund",
+                    "example": true
+                }                
             }
         },
         "SettlementEnquiry": {
