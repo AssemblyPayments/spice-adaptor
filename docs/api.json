@@ -341,13 +341,13 @@
                 "tipAmount": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "Tip component of a transaction in cents",
+                    "description": "Tip component of a transaction in cents. Note, Tip amount and cash out amount cannot be used together.",
                     "example": 200
                 },
                 "cashoutAmount": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "Amount to cashout in cents",
+                    "description": "Amount to cashout in cents. Tip amount and cash out amount cannot be used together.",
                     "example": 0
                 }
             }
