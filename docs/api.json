@@ -147,8 +147,8 @@
                         }
                     },
                     {
-                        "in": "query",
-                        "name": "query",
+                        "in": "body",
+                        "name": "body",
                         "description": "The posRefId of the MOTO transaction",
                         "required": true,
                         "schema": {
