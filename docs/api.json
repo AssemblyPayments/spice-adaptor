@@ -147,8 +147,8 @@
                         }
                     },
                     {
-                        "in": "body",
-                        "name": "body",
+                        "in": "query",
+                        "name": "query",
                         "description": "The posRefId of the MOTO transaction",
                         "required": true,
                         "schema": {
@@ -239,8 +239,8 @@
                         }
                     },
                     {
-                        "in": "body",
-                        "name": "body",
+                        "in": "query",
+                        "name": "query",
                         "description": "Retreiving refund transaction based on PosRefId",
                         "required": true,
                         "schema": {
