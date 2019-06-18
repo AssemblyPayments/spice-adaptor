@@ -55,8 +55,8 @@
                         }
                     },
                     {
-                        "in": "body",
-                        "name": "body",
+                        "in": "query",
+                        "name": "query",
                         "description": "Retreiving transaction based on PosRefId",
                         "required": true,
                         "schema": {
