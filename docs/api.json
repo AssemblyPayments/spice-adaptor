@@ -390,45 +390,7 @@
                 "security": [
                 ]
             }                      
-        },
-        "/ping": {
-            "get": {
-                "tags": [
-                    "Ping"
-                ],
-                "summary": "Sends a Ping to Assembly Payment Adaptor",
-                "description": "Sends a Ping to Assembly Payment Adaptor",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "header",
-                        "name": "header",
-                        "schema": {
-                            "$ref": "#/definitions/Headers"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully received a pong from Assembly Payment Adaptor",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/PingResponse"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                ]
-            }
-        }                    
+        }
     },
     "definitions": {
         "Headers": {
@@ -1491,32 +1453,7 @@
                     "description": "",
                     "example": "000000-000000"
                 }
-            },            
-            "PingResponse": {
-                "type": "object",
-                "properties": {
-                    "version": {
-                        "type": "string",
-                        "description": "version of Assembly Payments Adaptor",
-                        "example": "1.0.0"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "Connection status of Assembly Payments Adaptor",
-                        "example": "Unpaired"
-                    },
-                    "flow": {
-                        "type": "string",
-                        "description": "Flow of Assembly Payments Adaptor",
-                        "example": "Idle"
-                    },
-                    "pong": {
-                        "type": "string",
-                        "description": "The datetime pong echoed from the ping",
-                        "example": "2019-06-20T05:14:21.131Z"
-                    }
-                }
-            }
+            }            
         },
         "externalDocs": {
             "description": "Find out more at our Developer Portal",
