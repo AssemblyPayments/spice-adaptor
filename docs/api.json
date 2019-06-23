@@ -392,6 +392,44 @@
             }                      
         }
     },
+    "/ping": {
+        "get": {
+            "tags": [
+                "Ping"
+            ],
+            "summary": "Ping Assembly Payments Adaptor",
+            "description": "Ping Assembly Payments Adaptor",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "header",
+                    "schema": {
+                        "$ref": "#/definitions/Headers"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successfully retrieved the specified refund transaction",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/RefundResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "security": [
+            ]
+        }
+    },                  
     "definitions": {
         "Headers": {
             "type": "object",
@@ -1455,6 +1493,31 @@
                 }
             }            
         },
+        "PingResponse": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "string",
+                    "description": "Version of Assembly Payments Adaptor",
+                    "example": "0.1.0-alpha.35"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of Assembly Payments Adaptor",
+                    "example": "PairedConnected"
+                },
+                "flow": {
+                    "type": "string",
+                    "description": "Current flow",
+                    "example": "Idle"
+                },
+                "pong": {
+                    "type": "string",
+                    "description": "The date time of the pong",
+                    "example": "2019-06-23T05:37:02.176Z"
+                }
+            }
+        },        
         "externalDocs": {
             "description": "Find out more at our Developer Portal",
             "url": "https://developer.assemblypayments.com/docs"
