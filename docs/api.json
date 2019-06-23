@@ -415,7 +415,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successfully retrieved the specified refund transaction",
+                        "description": "Ping response from Assembly Payments Adaptor",
                         "content": {
                             "application/json": {
                                 "schema": {
