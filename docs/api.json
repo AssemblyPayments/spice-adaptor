@@ -420,7 +420,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/RefundResponse"
+                                "$ref": "#/definitions/PingResponse"
                             }
                         }
                     }
