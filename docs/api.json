@@ -390,44 +390,44 @@
                 "security": [
                 ]
             }                      
-        }
-    },
-    "/ping": {
-        "get": {
-            "tags": [
-                "Ping"
-            ],
-            "summary": "Ping Assembly Payments Adaptor",
-            "description": "Ping Assembly Payments Adaptor",
-            "consumes": [
-                "application/json"
-            ],
-            "produces": [
-                "application/json"
-            ],
-            "parameters": [
-                {
-                    "in": "header",
-                    "name": "header",
-                    "schema": {
-                        "$ref": "#/definitions/Headers"
+        },
+        "/ping": {
+            "get": {
+                "tags": [
+                    "Ping"
+                ],
+                "summary": "Ping Assembly Payments Adaptor",
+                "description": "Ping Assembly Payments Adaptor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
                     }
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successfully retrieved the specified refund transaction",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/PingResponse"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the specified refund transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PingResponse"
+                                }
                             }
                         }
                     }
-                }
-            },
-            "security": [
-            ]
+                },
+                "security": [
+                ]
+            }
         }
     },                  
     "definitions": {
