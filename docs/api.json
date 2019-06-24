@@ -1505,12 +1505,12 @@
                     "type": "string",
                     "description": "",
                     "example": "1"
-                }
+                },
                 "flow": {
                     "type": "string",
                     "description": "",
                     "example": "1"
-                }
+                },
                 "pong": {
                     "type": "string",
                     "description": "",
