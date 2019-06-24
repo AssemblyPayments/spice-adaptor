@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API specification for Assembly's SPICE (Simple Payments Interface - Classic Edition).",
+        "description": "API specification for Assembly's Payments Adaptor",
         "version": "1.1.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
@@ -24,7 +24,7 @@
             "name": "",
             "description": "",
             "externalDocs": {
-                "description": "SPICE Documentation",
+                "description": "Assembly Payments Adaptor Documentation",
                 "url": "https://developer.assemblypayments.com/docs/getting-started"
             }
         }
@@ -390,6 +390,44 @@
                 "security": [
                 ]
             }                      
+        },
+        "/ping": {
+            "get": {
+                "tags": [
+                    "Ping"
+                ],
+                "summary": "Ping Assembly Payments Adaptor",
+                "description": "Ping Assembly Payments Adaptor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A pong has been returned",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PongResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }
         }
     },
     "definitions": {
@@ -1455,6 +1493,31 @@
                 }
             }            
         },
+        "PingResponse": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "string",
+                    "description": "",
+                    "example": "1"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "",
+                    "example": "1"
+                }
+                "flow": {
+                    "type": "string",
+                    "description": "",
+                    "example": "1"
+                }
+                "pong": {
+                    "type": "string",
+                    "description": "",
+                    "example": "1"
+                }                                                
+            }
+        },        
         "externalDocs": {
             "description": "Find out more at our Developer Portal",
             "url": "https://developer.assemblypayments.com/docs"
