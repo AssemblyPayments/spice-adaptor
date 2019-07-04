@@ -738,7 +738,7 @@
                 "merchant_receipt": {
                     "type": "string",
                     "description": "Merchant receipt",
-                    "example": "EFTPOS FROM WESTPAC\r\nAP TEST MID VX690\r\nBUSNESS BANKING\r\nSYDNEY 2000\r\nAustralia\r\n\r\nTIME 26MAR19   13:55\r\nMID         25758970\r\nTSP     100381000315\r\nRRN     190326000302\r\nMasterCard      \r\nMastercard(C)     CR\r\nCARD............4791\r\nAID   A0000000041010\r\nTVR       0000008000\r\nAUTH          915304\r\n\r\nPURCHASE    AUD20.00\r\n\r\n   (000) APPROVED\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                    "example": "EFTPOS FROM WESTPAC\r\nAP TEST MID VX690\r\nBUSNESS BANKING\r\nSYDNEY 2000\r\nAustralia\r\n\r\nTIME 26MAR19   13:55\r\nMID         25758970\r\nTSP     100381000315\r\nRRN     190326000302\r\nMasterCard      \r\nMastercard(C)     CR\r\nCARD............4791\r\nAID   A0000000041010\r\nTVR       0000008000\r\nAUTH          915304\r\n\r\nPURCHASE    AUD100.00\r\n\r\n   (000) APPROVED\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
                 },
                 "merchant_receipt_printed": {
                     "type": "boolean",
