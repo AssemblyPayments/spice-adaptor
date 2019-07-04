@@ -1498,22 +1498,22 @@
             "properties": {
                 "version": {
                     "type": "string",
-                    "description": "",
+                    "description": "Assembly Payments Adaptor Version",
                     "example": "1"
                 },
                 "status": {
                     "type": "string",
-                    "description": "",
+                    "description": "The connection status to the EFTPOS terminal",
                     "example": "1"
                 },
                 "flow": {
                     "type": "string",
-                    "description": "",
+                    "description": "The current transaction flow of the adaptor",
                     "example": "1"
                 },
                 "pong": {
                     "type": "string",
-                    "description": "",
+                    "description": "Response",
                     "example": "1"
                 }                                                
             }
