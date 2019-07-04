@@ -17,7 +17,7 @@
             "url": ""
         }
     },
-    "host": "localhost",
+    "host": "localhost:8282",
     "basePath": "/v1",
     "tags": [
         {
