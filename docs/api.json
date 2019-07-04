@@ -633,7 +633,7 @@
                     "type": "integer",
                     "format": "int32",
                     "description": "Total amount of the transaction that was performed to the bank in cents",
-                    "example": 2000
+                    "example": 10000
                 },
                 "bank_settlement_date": {
                     "type": "string",
@@ -758,7 +758,7 @@
                     "type": "integer",
                     "format": "int32",
                     "description": "Purchase amount corresponding to the request",
-                    "example": 2000
+                    "example": 10000
                 },
                 "rrn": {
                     "type": "string",
