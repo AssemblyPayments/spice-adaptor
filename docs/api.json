@@ -451,8 +451,8 @@
                 },
                 "Content-Type": {
                     "type": "string",
-                    "description": "Content-type header",
-                    "example": "application/json"
+                    "description": "application/json",
+                    "example": "Content-type header"
                 }
             }                           
         },
@@ -1505,22 +1505,22 @@
                 "version": {
                     "type": "string",
                     "description": "Assembly Payments Adaptor Version",
-                    "example": "1"
+                    "example": "1.0"
                 },
                 "status": {
                     "type": "string",
                     "description": "The connection status to the EFTPOS terminal",
-                    "example": "1"
+                    "example": "PairedConnected"
                 },
                 "flow": {
                     "type": "string",
                     "description": "The current transaction flow of the adaptor",
-                    "example": "1"
+                    "example": "Idle"
                 },
                 "pong": {
                     "type": "string",
-                    "description": "Pong response",
-                    "example": "1"
+                    "description": "Time+Date response",
+                    "example": "2000-01-01T01:00:00.000Z"
                 }                                                
             }
         },        
