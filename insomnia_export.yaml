@@ -1,0 +1,360 @@
+_type: export
+__export_format: 4
+__export_date: 2019-07-16T05:10:05.574Z
+__export_source: insomnia.desktop.app:v6.5.4
+resources:
+  - _id: req_1a6fd8a7726b464d8e0c1626684a5c9e
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: >+
+        {
+          "posRefId": "{% prompt 'PosRefId', 'Please enter an unique PosRefId (alphanumeric)', '1234', '', false %}",
+          "purchaseAmount": 10000,
+          "surchargeAmount": 100,
+          "suppressMerchantPassword": true
+        }
+
+    created: 1563234284977
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563231836391
+    method: POST
+    modified: 1563234343852
+    name: MOTO
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/moto"
+    _type: request
+  - _id: fld_ee0cd74dade6496e9dda379766496e86
+    created: 1563231320195
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1563231320195
+    modified: 1563231320195
+    name: Assembly Payments Adaptor
+    parentId: wrk_9ecb8717fd904de5be558d47204e90e7
+    _type: request_group
+  - _id: wrk_9ecb8717fd904de5be558d47204e90e7
+    created: 1563230071895
+    description: ""
+    modified: 1563230071895
+    name: Insomnia
+    parentId: null
+    _type: workspace
+  - _id: req_f990180873024792b194b03ee28e8ea6
+    authentication: {}
+    body: {}
+    created: 1563234361176
+    description: ""
+    headers:
+      - id: pair_9909baa63007481e938c91aafd2edb23
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_01c270d980ac4fd2a9fce86ef0a7f376
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563231836366
+    method: GET
+    modified: 1563234444131
+    name: MOTO
+    parameters:
+      - id: pair_3afa25e6438f477a8a3baed47800acf6
+        name: ""
+        value: ""
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/moto?posRefId={% prompt 'PosRefId', 'PosRefId of the MOTO
+      Transaction', '', '', false %}"
+    _type: request
+  - _id: req_b00a99ba13b04d19a9779fbe3e734b58
+    authentication: {}
+    body: {}
+    created: 1563234247872
+    description: ""
+    headers:
+      - id: pair_9909baa63007481e938c91aafd2edb23
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_01c270d980ac4fd2a9fce86ef0a7f376
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563231836341
+    method: GET
+    modified: 1563234269231
+    name: Ping
+    parameters:
+      - id: pair_3afa25e6438f477a8a3baed47800acf6
+        name: ""
+        value: ""
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/ping"
+    _type: request
+  - _id: req_08fd2c705af248228095767ec46e81e4
+    authentication: {}
+    body: {}
+    created: 1563231836291
+    description: ""
+    headers:
+      - id: pair_9909baa63007481e938c91aafd2edb23
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_01c270d980ac4fd2a9fce86ef0a7f376
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563231836291
+    method: GET
+    modified: 1563233763061
+    name: Purchase
+    parameters:
+      - id: pair_3afa25e6438f477a8a3baed47800acf6
+        name: ""
+        value: ""
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/purchase?posRefId={% prompt 'PosRefId', 'PosRefId of the
+      transaction you wish to retrieve', '', '', false %}"
+    _type: request
+  - _id: req_84fbf184455d4401820b8963b33e96a2
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: >+
+        {
+          "posRefId": "{% prompt 'PosRefId', 'Please enter an unique PosRefId (alphanumeric)', '1234', '', false %}",
+          "purchaseAmount": 10000,
+          "tipAmount": 0,
+          "cashoutAmount": 0,
+          "surchargeAmount": 100,
+          "promptForCashout": false
+        }
+
+    created: 1563230265597
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265598
+    method: POST
+    modified: 1563233953540
+    name: Purchase
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/purchase"
+    _type: request
+  - _id: req_970856809b314ea5b11e091f36f9a669
+    authentication: {}
+    body: {}
+    created: 1563234022145
+    description: ""
+    headers:
+      - id: pair_9909baa63007481e938c91aafd2edb23
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_01c270d980ac4fd2a9fce86ef0a7f376
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265573
+    method: GET
+    modified: 1563234035075
+    name: Refund
+    parameters:
+      - id: pair_3afa25e6438f477a8a3baed47800acf6
+        name: ""
+        value: ""
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/refund?posRefId={% prompt 'PosRefId', 'PosRefId of the
+      transaction you wish to retrieve', '', '', false %}"
+    _type: request
+  - _id: req_ab17739e6a614971a83d1017d7366343
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: >+
+        {
+          "posRefId": "{% prompt 'PosRefId', 'Please enter an unique PosRefId (alphanumeric)', '1234', '', false %}",
+          "refundAmount": 10000
+        }
+
+    created: 1563233901932
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265548
+    method: POST
+    modified: 1563234002141
+    name: Refund
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/refund"
+    _type: request
+  - _id: req_d14656a2066f48a9bc8a7cdc8b4015ea
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: ""
+    created: 1563234110329
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265498
+    method: POST
+    modified: 1563234203123
+    name: Settlement Enquiry
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/settlement_enquiry"
+    _type: request
+  - _id: req_4024839b58d6466a80ba027e1b95c9c6
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: ""
+    created: 1563234212997
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265448
+    method: POST
+    modified: 1563234230395
+    name: Settlement
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/settlement"
+    _type: request
+  - _id: env_b59e992dcbdae064b9b75c8feed59a0687766c60
+    color: null
+    created: 1563230072000
+    data:
+      base_url: http://localhost:8282/v1/
+    dataPropertyOrder:
+      "&":
+        - base_url
+    isPrivate: false
+    metaSortKey: 1563230072000
+    modified: 1563231453420
+    name: Base Environment
+    parentId: wrk_9ecb8717fd904de5be558d47204e90e7
+    _type: environment
+  - _id: jar_b59e992dcbdae064b9b75c8feed59a0687766c60
+    cookies: []
+    created: 1563230072007
+    modified: 1563230072007
+    name: Default Jar
+    parentId: wrk_9ecb8717fd904de5be558d47204e90e7
+    _type: cookie_jar
+  - _id: env_333298e72b304e92a4faf40bb4eed5d3
+    color: "#0080ff"
+    created: 1563231429822
+    data:
+      base_url: http://localhost:8282/v1
+      header_pos_name: POS-Name
+      header_pos_version: POS-Version
+      pos_name: InsomniaPOS
+      pos_version: 1.0.0
+    dataPropertyOrder:
+      "&":
+        - base_url
+        - header_pos_name
+        - header_pos_version
+        - pos_name
+        - pos_version
+    isPrivate: false
+    metaSortKey: 1563231429822
+    modified: 1563233033430
+    name: Localhost
+    parentId: env_b59e992dcbdae064b9b75c8feed59a0687766c60
+    _type: environment
