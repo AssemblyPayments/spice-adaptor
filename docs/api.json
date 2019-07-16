@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API specification for Assembly's Payments Adaptor. <a href=\"https://insomnia.rest/run/?label=Assembly%20Payments%20Adaptor&uri=\" target=\"_blank\"><img src=\"https://insomnia.rest/images/run.svg\" alt=\"Run in Insomnia\"></a>",
+        "description": "API specification for Assembly's Payments Adaptor. <a href=\"https://insomnia.rest/run/?label=Assembly%20Payments%20Adaptor&uri=https%3A%2F%2Fraw.githubusercontent.com%2FAssemblyPayments%2Fspice-adaptor%2Fmaster%2Finsomnia_export.yaml\" target=\"_blank\"><img src=\"https://insomnia.rest/images/run.svg\" alt=\"Run in Insomnia\"></a>",
         "version": "1.1.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
