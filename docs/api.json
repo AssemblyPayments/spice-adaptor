@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API specification for Assembly's Payments Adaptor",
+        "description": "API specification for Assembly's Payments Adaptor. <a href=\"https://insomnia.rest/run/?label=Assembly%20Payments%20Adaptor&uri=\" target=\"_blank\"><img src=\"https://insomnia.rest/images/run.svg\" alt=\"Run in Insomnia\"></a>",
         "version": "1.1.0",
         "title": "Assembly Payments Adaptor API",
         "x-logo": {
