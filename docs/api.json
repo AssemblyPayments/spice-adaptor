@@ -532,7 +532,7 @@
                 "suppressMerchantPassword": {
                     "type": "boolean",
                     "description": "If true, merchant password will not be prompted during the refund",
-                    "example": true
+                    "example": false
                 }                
             }
         },
@@ -571,7 +571,7 @@
                 "suppressMerchantPassword": {
                     "type": "boolean",
                     "description": "If true, merchant password will not be prompted during the MOTO transaction",
-                    "example": true
+                    "example": false
                 }                
             }            
         },
