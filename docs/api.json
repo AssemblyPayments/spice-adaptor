@@ -125,6 +125,98 @@
                 ]
             }
         },
+        "/purchase/zip": {
+            "get": {
+                "tags": [
+                    "Zip"
+                ],
+                "summary": "Retrieve a Zip purchase transaction",
+                "description": "Retrieve a Zip purchase transaction from the last 10 processed transactions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Retreiving Zip transaction based on PosRefId",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetPurchaseRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the specified Zip transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PurchaseZipResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Zip"
+                ],
+                "summary": "Zip purchase transaction",
+                "description": "Making a Zip purchase transaction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Making a Zip purchase transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostPurchaseZipRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Zip transaction was successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/PurchaseZipResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }
+        },
         "/moto": {
             "get": {
                 "tags": [
@@ -304,6 +396,94 @@
                 "security": [
                 ]
             }            
+        },
+        "/refund/zip": {
+            "get": {
+                "tags": [
+                    "Zip"
+                ],
+                "summary": "Retrieve a Zip refund transaction",
+                "description": "Retrieve a Zip refund transaction from the last 10 processed transactions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Retreiving a Zip refund transaction based on PosRefId",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetRefundRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the specified Zip refund transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/RefundZipResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Zip"
+                ],
+                "summary": "Refund a Zip transaction",
+                "description": "Making a Zip refund transaction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "header",
+                        "schema": {
+                            "$ref": "#/definitions/Headers"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Making a Zip refund transaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostRefundZipRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Refund of Zip transaction successful",
+                        "schema": {
+                            "$ref": "#/definitions/RefundZipResponse"
+                        }
+                    }
+                },
+                "security": [
+                ]
+            }
         },
         "/settlement": {
             "post": {
@@ -499,6 +679,37 @@
                 }
             }
         },
+        "PostPurchaseZipRequest": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "purchaseAmount",
+                "storeCode"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "example": "purchaseTrans1"
+                },
+                "purchaseAmount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Total amount of the transaction that was performed to Zip in cents",
+                    "example": 10000
+                },
+                "storeCode": {
+                    "type": "string",
+                    "description": "Zip in-store code displayed in the Zip app",
+                    "example": "123456"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of what the purchase is for",
+                    "example": "6 easter eggs"
+                }
+            }
+        },
         "GetPurchaseRequest": {
             "type": "object",
             "required": [
@@ -534,6 +745,31 @@
                     "description": "If true, merchant password will not be prompted during the refund",
                     "example": false
                 }                
+            }
+        },
+        "PostRefundZipRequest": {
+            "type": "object",
+            "required": [
+                "posRefId",
+                "refundAmount",
+                "originalReceiptNumber"
+            ],
+            "properties": {
+                "posRefId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric identifier",
+                    "example": "refundtrans1"
+                },
+                "refundAmount": {
+                    "type": "integer",
+                    "description": "Total amount of the transaction that was performed to Zip in cents",
+                    "example": 5000
+                },
+                "originalReceiptNumber": {
+                    "type": "string",
+                    "description": "The original Zip receipt number (not the store code)",
+                    "example": "123456"
+                }
             }
         },
         "GetRefundRequest": {
@@ -808,6 +1044,79 @@
                 }
             }
         },
+        "PurchaseZipResponse": {
+            "type": "object",
+            "properties": {
+                "bank_date": {
+                    "type": "string",
+                    "example": "11112019"
+                },
+                "bank_time": {
+                    "type": "string",
+                    "example": "111111"
+                },
+                "customer_receipt": {
+                    "type": "string",
+                    "example": "     Merchant       \r\nMID         20000000\r\nTSP         12345678\r\nDATE      11/11/2019\r\nTIME        11:11:11\r\nREF  10000000-0000-0\r\nTRAN 111111      ZIP\r\nlocation ID        0\r\nStore Code    123456\r\nReceipt #     654321\r\n\r\nPURCHASE     AUD1.00\r\nTOTAL        AUD1.00\r\n\r\n\r\n   (000) Approved   \r\n  *CUSTOMER COPY*   \r\n\n\n\n\n"
+                },
+                "customer_receipt_printed": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "host_response_code": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "host_response_text": {
+                    "type": "string",
+                    "example": "Approved"
+                },
+                "merchant_receipt": {
+                    "type": "string",
+                    "example": "     Merchant       \r\nMID         20000000\r\nTSP         12345678\r\nDATE      11/11/2019\r\nTIME        11:11:11\r\nREF  10000000-0000-0\r\nTRAN 111111      ZIP\r\nlocation ID        0\r\nStore Code    123456\r\nReceipt #     654321\r\n\r\nPURCHASE     AUD1.00\r\nTOTAL        AUD1.00\r\n\r\n\r\n   (000) Approved   \r\n  *MERCHANT COPY*   \r\n\n\n\n\n"
+                },
+                "merchant_receipt_printed": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "pos_ref_id": {
+                    "type": "string",
+                    "example": "purchaseZipTrans1"
+                },
+                "purchase_amount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 100
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "terminal_ref_id": {
+                    "type": "string",
+                    "example": "1000000_00000000000000"
+                },
+                "zip_data": {
+                    "type": "object",
+                    "properties": {
+                        "location_id": {
+                            "type": "string",
+                            "example": "0"
+                        },
+                        "receipt_number": {
+                            "type": "string",
+                            "description": "The original Zip receipt number",
+                            "example": "654321"
+                        },
+                        "store_code": {
+                            "type": "string",
+                            "description": "Zip in-store code displayed in the Zip app",
+                            "example": "123456"
+                        }
+                    }
+                }
+            }
+        },
         "RefundResponse": {
             "type": "object",
             "properties": {
@@ -938,6 +1247,78 @@
                     "type": "string",
                     "description": "The requested transaction type",
                     "example": "REFUND"
+                }
+            }
+        },
+        "RefundZipResponse": {
+            "type": "object",
+            "properties": {
+                "bank_date": {
+                    "type": "string",
+                    "example": "11112019"
+                },
+                "bank_time": {
+                    "type": "string",
+                    "example": "111111"
+                },
+                "customer_receipt": {
+                    "type": "string",
+                    "example": "     Merchant       \r\nMID         20000000\r\nTSP         12345678\r\nDATE      11/11/2019\r\nTIME        11:11:11\r\nREF  10000000-0000-0\r\nTRAN 111111      ZIP\r\nlocation ID        0\r\nStore Code\r\nReceipt #     654321\r\n\r\nREFUND       AUD1.00\r\nTOTAL        AUD1.00\r\n\r\n\r\n   (000) Approved   \r\n  *CUSTOMER COPY*   \r\n\n\n\n\n"
+                },
+                "customer_receipt_printed": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "host_response_code": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "host_response_text": {
+                    "type": "string",
+                    "example": "Approved"
+                },
+                "merchant_receipt": {
+                    "type": "string",
+                    "example": "     Merchant       \r\nMID         20000000\r\nTSP         12345678\r\nDATE      11/11/2019\r\nTIME        11:11:11\r\nREF  10000000-0000-0\r\nTRAN 779279      ZIP\r\nlocation ID        0\r\nStore Code\r\nReceipt #     654321\r\n\r\nREFUND       AUD1.00\r\nTOTAL        AUD1.00\r\n\r\n\r\n   (000) Approved   \r\n  *MERCHANT COPY*   \r\n\n\n\n\n"
+                },
+                "merchant_receipt_printed": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "pos_ref_id": {
+                    "type": "string",
+                    "example": "refundZipTrans1"
+                },
+                "refund_amount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 100
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "terminal_ref_id": {
+                    "type": "string",
+                    "example": "1000000_00000000000000"
+                },
+                "zip_data": {
+                    "type": "object",
+                    "properties": {
+                        "location_id": {
+                            "type": "string",
+                            "example": "0"
+                        },
+                        "original_receipt_number": {
+                            "type": "string",
+                            "description": "The original Zip receipt number (not the store code)",
+                            "example": "654321"
+                        },
+                        "receipt_number": {
+                            "type": "string",
+                            "example": "0"
+                        }
+                    }
                 }
             }
         },
