@@ -1,7 +1,7 @@
 _type: export
 __export_format: 4
-__export_date: 2019-07-16T05:10:05.574Z
-__export_source: insomnia.desktop.app:v6.5.4
+__export_date: 2019-11-06T04:55:11.504Z
+__export_source: insomnia.desktop.app:v7.0.3
 resources:
   - _id: req_1a6fd8a7726b464d8e0c1626684a5c9e
     authentication: {}
@@ -187,6 +187,73 @@ resources:
     settingStoreCookies: true
     url: "{{ base_url  }}/purchase"
     _type: request
+  - _id: req_0344a44aeb464535b2cc2c179dcb0324
+    authentication: {}
+    body: {}
+    created: 1571280110735
+    description: ""
+    headers:
+      - id: pair_9909baa63007481e938c91aafd2edb23
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_01c270d980ac4fd2a9fce86ef0a7f376
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265591.75
+    method: GET
+    modified: 1571955007866
+    name: Purchase (Zip)
+    parameters:
+      - id: pair_3afa25e6438f477a8a3baed47800acf6
+        name: ""
+        value: ""
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/purchase/zip?posRefId={% prompt 'PosRefId', 'PosRefId of
+      the transaction you wish to retrieve', '', '', false %}"
+    _type: request
+  - _id: req_a8755ba60d3e4c9498d11a078f13a692
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: >
+        {
+          "posRefId": "{% prompt 'PosRefId', 'Please enter an unique PosRefId (alphanumeric)', '1234', '', false %}",
+          "purchaseAmount": 100,
+        	"storeCode": "{% prompt 'storeCode', 'Please enter the ZIP in store code (6 numbers)', '123456', '', false, true %}",
+        	"description": ""
+        }
+    created: 1571023435273
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265585.5
+    method: POST
+    modified: 1572409251774
+    name: Purchase (Zip)
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/purchase/zip"
+    _type: request
   - _id: req_970856809b314ea5b11e091f36f9a669
     authentication: {}
     body: {}
@@ -252,6 +319,72 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ base_url  }}/refund"
+    _type: request
+  - _id: req_0320ebd683324b32966ccff8ca619c29
+    authentication: {}
+    body: {}
+    created: 1571280147301
+    description: ""
+    headers:
+      - id: pair_9909baa63007481e938c91aafd2edb23
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_01c270d980ac4fd2a9fce86ef0a7f376
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265535.5
+    method: GET
+    modified: 1571955021784
+    name: Refund (Zip)
+    parameters:
+      - id: pair_3afa25e6438f477a8a3baed47800acf6
+        name: ""
+        value: ""
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/refund/zip?posRefId={% prompt 'PosRefId', 'PosRefId of
+      the transaction you wish to retrieve', '', '', false %}"
+    _type: request
+  - _id: req_34154c143bec46ff967b0ed19093625f
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: >
+        {
+          "posRefId": "{% prompt 'PosRefId', 'Please enter an unique PosRefId (alphanumeric)', '1234', '', false %}",
+          "refundAmount": 100,
+        	"originalReceiptNumber": "{% prompt 'originalReceiptNumber', 'Please enter the orginal ZIP receipt number (6 numbers, not the store code)', '0', '', false, true %}"
+        }
+    created: 1571265894782
+    description: ""
+    headers:
+      - id: pair_11c8d0cd579d4388a19c3d1b486bb525
+        name: Content-Type
+        value: application/json
+      - id: pair_afe6bbc9175441a086832ecc8327b2a4
+        name: "{{ header_pos_name  }}"
+        value: "{{ pos_name  }}"
+      - id: pair_7de49938b0504d81b3ff3070dd2a62f5
+        name: "{{ header_pos_version  }}"
+        value: "{{ pos_version  }}"
+    isPrivate: false
+    metaSortKey: -1563230265523
+    method: POST
+    modified: 1573012806162
+    name: Refund (Zip)
+    parameters: []
+    parentId: fld_ee0cd74dade6496e9dda379766496e86
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ base_url  }}/refund/zip"
     _type: request
   - _id: req_d14656a2066f48a9bc8a7cdc8b4015ea
     authentication: {}
@@ -354,7 +487,7 @@ resources:
         - pos_version
     isPrivate: false
     metaSortKey: 1563231429822
-    modified: 1563233033430
+    modified: 1572408400038
     name: Localhost
     parentId: env_b59e992dcbdae064b9b75c8feed59a0687766c60
     _type: environment
