@@ -698,11 +698,6 @@
                     "description": "Total amount of the transaction that was performed to Zip in cents",
                     "example": 10000
                 },
-                "storeCode": {
-                    "type": "string",
-                    "description": "Zip in-store code displayed in the Zip app",
-                    "example": "123456"
-                },
                 "description": {
                     "type": "string",
                     "description": "A description of what the purchase is for",

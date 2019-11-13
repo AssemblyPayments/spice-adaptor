@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2019-11-06T04:55:11.504Z
+__export_date: 2019-11-13T01:26:27.145Z
 __export_source: insomnia.desktop.app:v7.0.3
 resources:
   - _id: req_1a6fd8a7726b464d8e0c1626684a5c9e
@@ -225,7 +225,6 @@ resources:
         {
           "posRefId": "{% prompt 'PosRefId', 'Please enter an unique PosRefId (alphanumeric)', '1234', '', false %}",
           "purchaseAmount": 100,
-        	"storeCode": "{% prompt 'storeCode', 'Please enter the ZIP in store code (6 numbers)', '123456', '', false, true %}",
         	"description": ""
         }
     created: 1571023435273
@@ -243,7 +242,7 @@ resources:
     isPrivate: false
     metaSortKey: -1563230265585.5
     method: POST
-    modified: 1572409251774
+    modified: 1573608340342
     name: Purchase (Zip)
     parameters: []
     parentId: fld_ee0cd74dade6496e9dda379766496e86
