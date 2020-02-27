@@ -7,7 +7,7 @@
         "x-logo": {
             "url": "https://raw.githubusercontent.com/mx51/spice-adaptor/master/logo.png",
             "backgroundColor": "#FFFFFF",
-            "altText": "Assembly Payments"
+            "altText": "mx51"
         },
         "contact": {
             "email": "spice.adaptor@mx51.io"

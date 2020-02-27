@@ -48,7 +48,7 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1563231320195
     modified: 1563231320195
-    name: Assembly Payments Adaptor
+    name: mx51 Spice
     parentId: wrk_9ecb8717fd904de5be558d47204e90e7
     _type: request_group
   - _id: wrk_9ecb8717fd904de5be558d47204e90e7
